@@ -102,22 +102,25 @@ body{
     line-height:1.6;
 }
 
-/* SOCIAL */
+/* ================================
+   SOCIAL ICONS
+================================ */
 
 .social{
     display:flex;
     justify-content:center;
-    gap:10px;
+    align-items:center;
+    gap:12px;
     margin:18px 0 25px;
 }
 
 .social a{
-    width:40px;
-    height:40px;
-
+    position:relative;
+    width:44px;
+    height:44px;
     border-radius:50%;
 
-    background:white;
+    background:#fff;
     border:1px solid var(--border);
 
     display:flex;
@@ -127,14 +130,40 @@ body{
     text-decoration:none;
     font-size:20px;
 
-    transition:.2s;
+    transition:
+        transform .25s ease,
+        background-color .25s ease,
+        border-color .25s ease,
+        color .25s ease,
+        box-shadow .25s ease;
+
+    box-shadow:
+        0 4px 12px rgba(70,50,35,.06);
 }
 
+/* Hover umum */
 .social a:hover{
-    transform:translateY(-2px);
+    transform:translateY(-4px) scale(1.05);
 }
 
-/* SOCIAL BRAND HOVER */
+/* Saat diklik */
+.social a:active{
+    transform:translateY(-1px) scale(.97);
+}
+
+/* Animasi icon */
+.social a i{
+    transition:
+        transform .25s ease,
+        filter .25s ease;
+}
+
+.social a:hover i{
+    transform:scale(1.12);
+}
+
+
+/* TIKTOK */
 
 .social a:has(.bi-tiktok){
     color:#111;
@@ -144,8 +173,13 @@ body{
     background:#111;
     border-color:#111;
     color:#fff;
-    box-shadow:0 8px 20px rgba(0,0,0,.18);
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,.20);
 }
+
+
+/* WHATSAPP */
 
 .social a:has(.bi-whatsapp){
     color:#25D366;
@@ -155,15 +189,45 @@ body{
     background:#25D366;
     border-color:#25D366;
     color:#fff;
-    box-shadow:0 8px 20px rgba(37,211,102,.28);
+
+    box-shadow:
+        0 10px 25px rgba(37,211,102,.30);
 }
 
-.social a i{
-    transition:transform .2s ease;
+
+/* WEBSITE */
+
+.social a:has(.bi-link-45deg){
+    color:var(--brown);
 }
 
-.social a:hover i{
-    transform:scale(1.08);
+.social a:has(.bi-link-45deg):hover{
+    background:var(--brown);
+    border-color:var(--brown);
+    color:#fff;
+
+    box-shadow:
+        0 10px 25px rgba(128,99,79,.30);
+}
+
+
+/* REDUCE MOTION */
+
+@media (prefers-reduced-motion: reduce){
+
+    .social a,
+    .social a i{
+        transition:none;
+    }
+
+    .social a:hover,
+    .social a:active{
+        transform:none;
+    }
+
+    .social a:hover i{
+        transform:none;
+    }
 }
 
 
