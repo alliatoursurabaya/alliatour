@@ -239,42 +239,118 @@ body{
 }
 
 .button{
+    position:relative;
+    overflow:hidden;
     min-height:56px;
-
     border-radius:16px;
-
     display:flex;
     align-items:center;
     justify-content:center;
-
     text-decoration:none;
-
     font-size:15px;
     font-weight:650;
-
     color:var(--brown-dark);
-
-    background:white;
-
+    background:#fff;
     border:1px solid var(--border);
+    box-shadow:0 5px 18px rgba(70,50,35,.05);
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease,
+        background .3s ease,
+        border-color .3s ease,
+        color .3s ease;
+}
 
-    box-shadow:
-    0 5px 18px rgba(70,50,35,.05);
+.button::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-120%;
+    width:55%;
+    height:100%;
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.55),
+        transparent
+    );
+    transform:skewX(-20deg);
+    transition:left .65s ease;
+    pointer-events:none;
+}
 
-    transition:.2s;
+.button::after{
+    content:"";
+    position:absolute;
+    left:18%;
+    right:18%;
+    bottom:0;
+    height:2px;
+    border-radius:999px;
+    background:var(--brown);
+    transform:scaleX(0);
+    transform-origin:center;
+    transition:transform .3s ease;
+    pointer-events:none;
 }
 
 .button:hover{
-    transform:translateY(-2px);
-    box-shadow:
-    0 8px 22px rgba(70,50,35,.09);
+    transform:translateY(-3px);
+    color:var(--brown-dark);
+    background:linear-gradient(135deg,#fff,var(--soft));
+    border-color:var(--brown);
+    box-shadow:0 10px 28px rgba(70,50,35,.14);
+}
+
+.button:hover::before{
+    left:140%;
+}
+
+.button:hover::after{
+    transform:scaleX(1);
 }
 
 .button.primary{
     background:var(--brown);
-    color:white;
-    border:none;
+    color:#fff;
+    border:1px solid var(--brown);
+    box-shadow:0 7px 22px rgba(128,99,79,.24);
 }
+
+.button.primary:hover{
+    background:var(--brown-dark);
+    color:#fff;
+    border-color:var(--brown-dark);
+    transform:translateY(-3px);
+    box-shadow:0 12px 30px rgba(76,59,48,.30);
+}
+
+.button.primary::after{
+    background:rgba(255,255,255,.8);
+}
+
+.button:active{
+    transform:translateY(-1px) scale(.985);
+    box-shadow:0 5px 15px rgba(70,50,35,.10);
+}
+
+@media (prefers-reduced-motion: reduce){
+    .button,
+    .button::before,
+    .button::after{
+        transition:none;
+    }
+
+    .button:hover,
+    .button:active{
+        transform:none;
+    }
+
+    .button:hover::before{
+        left:-120%;
+    }
+}
+
 
 /* SECTION */
 
